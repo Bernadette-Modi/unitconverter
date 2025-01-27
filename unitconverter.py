@@ -21,8 +21,10 @@ conversion_factors = {
         "celsius": lambda val, to: (val * 9/5 + 32) if to == "fahrenheit" else (val + 273.15),
         "fahrenheit": lambda val, to: ((val - 32)*5/9) if to == "celsius" else ((val - 32)*5/9 + 273.15),
         "kelvin": lambda val, to: (val - 273.15) if to == "celsius" else ((val - 273.15) * 9/5 + 32),
-    }
-
-
-
+    },
 }
+def get_conversion_type(unit):
+    for conversion_type, units in conversion_factors.items():
+        if unit in units:
+            return conversion_type
+    return None
