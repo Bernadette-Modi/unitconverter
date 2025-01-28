@@ -39,4 +39,20 @@ def convert_units(value, from_unit, to_unit):
         return conversion_factors[from_type][from_unit](value, to_unit)
     base_value = value * conversion_factors[from_type][from_unit]
     return base_value / conversion_factors[from_type][to_unit]
-    
+
+def main():
+    print("Welcome to the Unit Converter!")
+    print("You can convert between units of Length, Weight, and Temperature.")
+
+    while true:
+        try:
+            print("\nSelect a measurement type to convert: ")
+            print("1. Length")
+            print("2. Weight")
+            print("3. Temperature")
+            print("4. Exit")
+            choice = input("Enter your choice (1-4): ")
+            if choice == "4":
+                print("Thank you for using the Unit Converter. Goodbye!")
+                break 
+            
