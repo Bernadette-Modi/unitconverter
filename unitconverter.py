@@ -65,3 +65,15 @@ def main():
             from_unit = input("Enter the unit to convert from: ").lower()
             to_unit = input("Enter the unit to convert to: ").lower()
 
+            if from_unit not in conversion_factors[measurement_type] or to_unit not in conversion_factors[measurement_type]:
+                print("Invalid units for the selected measurement type. Please try again.")
+                continue
+            
+            result = convert_units(value, from_unit, to_unit)
+            print(f"Converted value: {result: .2f} {to_unit}")
+        except ValueError as e:
+            print(f"Error: {e}")
+        except Exception as e:
+            print(f"An unexpected error occured: {e}")
+if __name__ == "__main__":
+    main()
