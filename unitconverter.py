@@ -23,8 +23,20 @@ conversion_factors = {
         "kelvin": lambda val, to: (val - 273.15) if to == "celsius" else ((val - 273.15) * 9/5 + 32),
     },
 }
+
 def get_conversion_type(unit):
     for conversion_type, units in conversion_factors.items():
         if unit in units:
             return conversion_type
     return None
+
+def convert_units(value, from_unit, to_unit):
+    from_type = get_conversion_type(from_unit)
+    to_type = get_conversion_type(to_unit)
+    if from_type != to_type:
+        raise ValueError("Conversion between different types is not supported.")
+    if from_type == "temperature":
+        return conversion_factors[from_type][from_unit](value, to_unit)
+    base_value = value * conversion_factors[from_type][from_unit]
+    return base_value / conversion_factors[from_type][to_unit]
+    
