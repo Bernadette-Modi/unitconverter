@@ -44,7 +44,7 @@ def main():
     print("Welcome to the Unit Converter!")
     print("You can convert between units of Length, Weight, and Temperature.")
 
-    while true:
+    while True:
         try:
             print("\nSelect a measurement type to convert: ")
             print("1. Length")
@@ -55,4 +55,13 @@ def main():
             if choice == "4":
                 print("Thank you for using the Unit Converter. Goodbye!")
                 break 
-            
+            if choice not in ["1", "2", "3"]:
+                print("Invalid choice. Please try again.")
+                continue
+            measurement_type = ["length", "weight", "temperature"][int(choice)-1]
+            print(f"\nAvailable units for {measurement_type.capitalize()}: {', '.join(conversion_factors[measurement_type].keys())}")
+
+            value = float(input("Enter the value to convert: "))
+            from_unit = input("Enter the unit to convert from: ").lower()
+            to_unit = input("Enter the unit to convert to: ").lower()
+
